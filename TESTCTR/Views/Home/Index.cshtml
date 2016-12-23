@@ -1,0 +1,489 @@
+﻿@{
+    ViewBag.Title = "Principal";
+}
+
+<div class="panel with-nav-tabs panel-default">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1default" data-toggle="tab">Clientes</a></li>
+            <li><a href="#tab2default" data-toggle="tab">Contactos</a></li>
+
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="tab1default">
+
+                <h1>Clientes</h1>
+                
+
+
+                <button id="CargarClientes" type="button" class="btn btn-danger">Consultar</button>
+                <button id="NuevoCliente" type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalClientes">Nuevo Cliente</button>
+
+
+                <hr />
+
+                <div id="ClientesTableContainer"></div>
+
+            </div>
+            <div class="tab-pane fade" id="tab2default">
+
+                <h1>Contactos</h1>
+                <button id="CargarContactos" type="button" class="btn btn-danger">Consultar</button>
+                <button id="NuevoContacto" type="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalContactos">Nuevo Contacto</button>
+
+                <hr />
+
+
+                <div id="ContactosTableContainer"></div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<div id="ModalClientes" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+
+                <h2 class="modal-title">Actualizar Cliente</h2>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="hiddenIdcliente" name="hiddenIdcliente" />
+                <div class="form-group">
+                    <label for="txtnombre">Nombre:</label>
+                    <input id="txtnombre" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtdireccion">Direccion:</label>
+                    <input id="txtdireccion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtciudad">Ciudad:</label>
+                    <input id="txtciudad" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtregion">Region:</label>
+                    <input id="txtregion" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtcodigopostal">Codigo Postal:</label>
+                    <input id="txtcodigopostal" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtpais">Pais:</label>
+                    <input id="txtpais" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txttelefono">Telefono:</label>
+                    <input id="txttelefono" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtemail">E mail:</label>
+                    <input id="txtemail" class="form-control">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="actualizarCliente" class="btn btn-success"  value="Actualizar">Actualizar</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="ModalContactos" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dissmiss="modal">&times;</button>
+                <h2 class="modal-title">Actualizar Contacto</h2>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" name="hiddenIdcontacto" />
+                <div class="form-group">
+                    <label for="txtapellidop">Apellido Paterno:</label>
+                    <input id="txtapellidop" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txtapellidom">Apellido Materno:</label>
+                    <input id="txtapellidom" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtnombrecontacto">Nombre:</label>
+                    <input id="txtnombrecontacto" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtemailcontacto">E mail:</label>
+                    <input id="txtemailcontacto" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="txtdireccioncontacto">Direccion:</label>
+                    <input id="txtdireccioncontacto" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txttelefonocontactom">Telefono:</label>
+                    <input id="txttelefonocontactom" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="txttelefonocontactof">Telefono:</label>
+                    <input id="txttelefonocontactof" class="form-control">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="actualizarCliente" type="button" class="btn btn-success" value="Actualizar">Actualizar</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <link href="~/Content/highlight.css" rel="stylesheet" />
+
+
+
+    <link href="~/Content/themes/metro/darkorange/jtable.css" rel="stylesheet" />
+    <link href="~/Scripts/jtable/themes/metro/darkorange/jtable.css" rel="stylesheet" />
+    <link href="~/Scripts/jtable/themes/metro/darkorange/jtable.min.css" rel="stylesheet" />
+
+
+    <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.0.min.js"></script>
+
+
+    <script src="~/Scripts/jtable/jquery.jtable.min.js"></script>
+    <script src="~/Scripts/jtable/localization/jquery.jtable.es.js"></script>
+    <script src="~/Scripts/jtable/extensions/Jquery.jtable.toolbarsearch.js"></script>
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            function camposbusqueda() {
+            }
+
+            $('#ClientesTableContainer').jtable({
+                ajaxSettings: {
+                    type: 'POST',
+                    dataType: 'json'
+                },
+                title: 'Clientes',
+                toolbarsearch: true,
+                toolbarreset: false,
+                actions: {
+                    listAction: '/Home/GetVentasClientes'
+                },
+                fields: {
+                    ID_Cliente: {
+                        key: true,
+                        list: false
+                    },
+                    NombreCliente: {
+                        title: 'Nombre Cliente',
+                        width: '35%'
+                    },
+                    ID_Contacto: {
+                        title: 'Contacto',
+                        width: '35%',
+                        list: false
+                    },
+
+                    Direccion: {
+                        title: 'Direccion',
+                        width: '35%'
+                    },
+                    Ciudad: {
+                        title: 'Ciudad',
+                        width: '15%',
+                    },
+                    Region: {
+                        title: 'Region',
+                        width: '15%',
+                    },
+                    CodigoPostal: {
+                        title: 'Codigo Postal',
+                        width: '35%',
+                        list: false
+                    },
+                    Pais: {
+                        title: 'Pais',
+                        width: '35%',
+                        list: false
+                    },
+                    Telefono: {
+                        title: 'Telefono',
+                        width: '35%',
+                        list: false
+                    },
+                    email: {
+                        title: 'Email',
+                        width: '35%',
+                        list: false
+                    },
+                    Information: {
+                        title: 'Edit',
+                        width: '5%',
+                        sorting: false,
+                        edit: true,
+                        create: true,
+                        type: 'textarea',
+                        display: function (datacliente) {
+                            
+                            var $img = $('<img src="../Content/Images/document_edit.png" title="Editar Informacion" />');
+                            $img.click(function () {
+
+                                $("#hiddenIdcliente").val(datacliente.record.ID_Cliente);
+                                ObtenerDatosCliente(datacliente.record.ID_Cliente);
+
+                            });
+                            return $img;
+                        }
+                    },
+                    Information_: {
+                        title: 'Borrar',
+                        width: '5%',
+                        sorting: false,
+                        edit: true,
+                        create: true,
+                        type: 'textarea',
+                        display: function (datacliente) {
+                            var $img = $('<img src="../Content/Images/document_delete.png" title="Eliminar Cliente" />');
+                            $img.click(function () {
+                                BorrarCliente(datacliente.record.ID_Cliente);
+
+                            });
+                            return $img;
+                        }
+                    }
+
+                }
+            });
+
+            $('#ContactosTableContainer').jtable({
+                title: 'Contactos',
+                toolbarsearch: true,
+                toolbarreset: false,
+                actions: {
+                    listAction: '/Home/GetVentasContactos'
+                },
+                fields: {
+                    ID_contacto: {
+                        key: true,
+                        list: false
+                    },
+                    Apellido_paterno: {
+                        title: 'Apellido Paterno',
+                        width: '20%'
+                    },
+                    Apellido_materno: {
+                        title: 'Apellido Materno',
+                        width: '20%'
+                    },
+                    Nombres: {
+                        title: 'Nombre Contacto',
+                        width: '20%'
+                    },
+                    Correo_electronico: {
+                        title: 'Correo electronico',
+                        width: '20%'
+                    },
+                    Telefono_movil: {
+                        title: 'Telefono',
+                        width: '15%',
+                    }
+                }
+            });
+            
+            $('#CargarClientes').click(function (e) {
+                e.preventDefault();
+                var vNombreCliente = $('#jtable-toolbarsearch-NombreCliente').val();
+                var vDireccion = $('#jtable-toolbarsearch-Direccion').val();
+                var vCiudad = $('#jtable-toolbarsearch-Ciudad').val();
+                var vRegion = $('#jtable-toolbarsearch-Region').val();
+                $('#ClientesTableContainer').jtable('load', {
+                    nombre: vNombreCliente,
+                    direccion: vDireccion,
+                    ciudad: vCiudad,
+                    region: vRegion
+                });
+                //********************
+                var vApellidop = $('#jtable-toolbarsearch-Apellido_paterno').val();
+                var vApellidom = $('#jtable-toolbarsearch-Apellido_materno').val();
+                var vNombre = $('#jtable-toolbarsearch-Nombres').val();
+                var vCorreoe = $('#jtable-toolbarsearch-Correo_electronico').val();
+                var vTelefono = $('#jtable-toolbarsearch-Telefono_movil').val();
+
+                $('#ContactosTableContainer').jtable('load', {
+                    apellidop: vApellidop,
+                    apellidom: vApellidom,
+                    nombre: vNombre,
+                    correoe: vCorreoe,
+                    telefono: vTelefono
+                });
+            });
+
+            $('#CargarClientes').click();
+
+            $('#NuevoCliente').click(function (e) {
+                LimpiartextosCliente();
+
+            });
+
+            $('#actualizarCliente').click(function (e) {
+              
+              
+                    ActualizarCliente();
+              
+                
+            });
+
+        });
+
+        //Funciones Metodos Clientes***********************************
+
+        function ObtenerDatosCliente(idcliente) {
+            $.ajax({
+                url: "http://localhost:63867/api/clientes/",
+                data: { id: idcliente },
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                statusCode: {
+                    200: function (data) {
+                        MostrardatosCliente(data);
+                    },
+                    404: function () {
+                        alert('No fue posoible realizar la operacion');
+                    }
+                }
+            });
+
+        }
+
+        function MostrardatosCliente(data) {
+            if (data != null) {
+
+                $("#txtnombre").val(data.NombreCliente);
+                $("#txtdireccion").val(data.Direccion);
+                $("#txtciudad").val(data.Ciudad);
+                $("#txtregion").val(data.Region);
+
+                $("#txtcodigopostal").val(data.CodigoPostal);
+                $("#txtpais").val(data.Pais);
+                
+                $("#txttelefono").val(data.Telefono);
+                $("#txtemail").val(data.email);
+
+                $("#ModalClientes").modal();
+
+            } else {
+                alert("No hay datos de este cliente");
+            }
+        }
+
+        function ActualizarCliente() {
+            var vCliente = {
+                ID_Cliente: parseInt($("#hiddenIdcliente").val()),
+                NombreCliente: $("#txtnombre").val(),
+                Direccion: $("#txtdireccion").val(),
+                Ciudad: $("#txtciudad").val(),
+                Region: $("#txtregion").val(),
+
+                CodigoPostal: $("#txtcodigopostal").val(),
+                Pais: $("#txtpais").val(),
+                Telefono: $("#txttelefono").val(),
+                email: $("#txtemail").val()
+            }
+   
+            $.ajax({
+                url: "http://localhost:63867/api/clientes/",
+                data: JSON.stringify(vCliente),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                statusCode: {
+                    200: function (data) {
+                        alert("el registro fue exitoso");
+                        $('#CargarClientes').click();
+                    },
+                    404: function (dataerrores) {
+                        var errors = JSON.parse(dataerrores.responseText);
+                        var strErrores = "";
+                        $.each(errors, function (index, err) {
+                            strErrores += "*" + err + "n";
+                        });
+                        alert(strErrores);
+                        
+                    }
+                }
+            });
+        }
+
+        function BorrarCliente(idcliente) {
+            var url = "/api/clientes/" + idcliente;
+            $.ajax({
+                url: url,
+                //data: { id: idcliente },
+                type: 'DELETE',
+                contentType: "application/json;charset=utf-8",
+                statusCode: {
+                    204: function () {
+                        //reload
+                        $('#CargarClientes').click();
+                        alert('El registro fue eliminado exitosamente')
+
+                    },
+                    404: function () {
+                        alert('No fue posoible realizar la operacion');
+                    }
+
+                }
+
+            }
+                )
+        }
+
+        function LimpiartextosCliente() {
+            $("#hiddenIdcliente").val("0");
+            $("#txtnombre").val("");
+            $("#txtdireccion").val("");
+            $("#txtciudad").val("");
+            $("#txtregion").val("");
+            $("#txtcodigopostal").val("");
+            $("#txtpais").val("");
+            $("#txttelefono").val("");
+            $("#txtemail").val("");
+        }
+ 
+
+
+    </script>
+
+}
